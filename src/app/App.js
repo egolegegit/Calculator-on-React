@@ -12,34 +12,22 @@ function App() {
       <Display />
       <div className="calculator">
         <div className="buttons">
-          <div className="operators">
-            <FunctionButton operator={'+'} />
-            <FunctionButton operator={'-'} />
-            <FunctionButton operator={'*'} />
-            <FunctionButton operator={'/'} />
-          </div>
-          <div className="leftPanel">
-            <div className="numbers">
-              <NumberButton buttonValue={'7'} />
-              <NumberButton buttonValue={'8'} />
-              <NumberButton buttonValue={'9'} />
-            </div>
-            <div className="numbers">
-              <NumberButton buttonValue={'4'} />
-              <NumberButton buttonValue={'5'} />
-              <NumberButton buttonValue={'6'} />
-            </div>
-            <div className="numbers">
-              <NumberButton buttonValue={'1'} />
-              <NumberButton buttonValue={'2'} />
-              <NumberButton buttonValue={'3'} />
-            </div>
-            <div className="numbers">
-              <NumberButton buttonValue={'0'} />
-              <NumberButton buttonValue={'.'} />
-              <ClearButton operator={'AC'} />
-            </div>
-          </div>
+          <FunctionButton operator={'+'} />
+          <FunctionButton operator={'-'} />
+          <FunctionButton operator={'*'} />
+          <FunctionButton operator={'/'} />
+          <NumberButton buttonValue={'7'} />
+          <NumberButton buttonValue={'8'} />
+          <NumberButton buttonValue={'9'} />
+          <NumberButton buttonValue={'4'} />
+          <NumberButton buttonValue={'5'} />
+          <NumberButton buttonValue={'6'} />
+          <NumberButton buttonValue={'1'} />
+          <NumberButton buttonValue={'2'} />
+          <NumberButton buttonValue={'3'} />
+          <NumberButton buttonValue={'0'} />
+          <NumberButton buttonValue={'.'} />
+          <ClearButton operator={'AC'} />
           <EqualButton />
         </div>
       </div>
