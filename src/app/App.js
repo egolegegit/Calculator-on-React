@@ -1,4 +1,5 @@
 import React from 'react'
+import CalculatorProvider from './utils/providers/calculatorProvider'
 import Display from './components/display'
 import NumberButton from './components/numberButton'
 import EqualButton from './components/equalButton'
@@ -7,10 +8,9 @@ import ClearButton from './components/clearButton'
 
 function App() {
   return (
-    <>
-      <h3>Калькулятор на React</h3>
-      <Display />
+    <CalculatorProvider>
       <div className="calculator">
+        <Display />
         <div className="buttons">
           <FunctionButton operator={'+'} />
           <FunctionButton operator={'-'} />
@@ -31,7 +31,7 @@ function App() {
           <EqualButton />
         </div>
       </div>
-    </>
+    </CalculatorProvider>
   )
 }
 

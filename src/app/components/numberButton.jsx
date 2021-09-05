@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CalculatorContext } from '../utils/providers/calculatorProvider'
 import PropTypes from 'prop-types'
 
 const NumberButton = ({ buttonValue }) => {
+  const { handleSetDisplayValue } = useContext(CalculatorContext)
   return (
     <>
-      <div>{buttonValue}</div>
+      <div onClick={() => handleSetDisplayValue(buttonValue)}>
+        {buttonValue}
+      </div>
     </>
   )
 }
