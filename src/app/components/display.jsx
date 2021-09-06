@@ -2,14 +2,15 @@ import React, { useContext } from 'react'
 import { CalculatorContext } from '../utils/providers/calculatorProvider'
 
 const Display = () => {
-  const { number, storedNumber, functionType } = useContext(CalculatorContext)
+  const { number, storedNumber, infoMessage, functionType } =
+    useContext(CalculatorContext)
 
   return (
     <>
       <div className="input">
-        <span className="calc-string">
-          {!storedNumber
-            ? ''
+        <span className="info-string">
+          {!storedNumber || infoMessage
+            ? `${infoMessage}`
             : `${storedNumber}${functionType}${number}`}
         </span>
         <span>

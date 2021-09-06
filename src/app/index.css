@@ -42,11 +42,10 @@ body {
   -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
   box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
 }
-.calc-string {
-  margin-bottom: 5px;
-  padding: 4px 0;
+
+.info-string {
+  min-height: 30px;
   font-size: 1.2rem;
-  /* background-color: #dee8f8; */
 }
 
 .buttons {
