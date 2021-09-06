@@ -11,7 +11,7 @@ const Display = () => {
         <span className="info-string">
           {!storedNumber || infoMessage
             ? `${infoMessage}`
-            : `${storedNumber}${functionType}${number}`}
+            : `${storedNumber} ${functionType} ${number}`}
         </span>
         <span>
           {!number.length && !storedNumber ? '0' : number || storedNumber}
