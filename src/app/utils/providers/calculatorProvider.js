@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PropTypes } from 'prop-types'
 import { MAX_DIGITS } from '../constants'
 
@@ -9,6 +9,20 @@ const CalculatorProvider = ({ children }) => {
   const [storedNumber, setStoredNumber] = useState('')
   const [functionType, setFunctionType] = useState('')
   const [infoMessage, setInfoMessage] = useState('')
+
+  function handleKeyUp(event) {
+    const { key } = event
+
+    handleSetDisplayValue(key)
+  }
+
+  useEffect(() => {
+    window.addEventListener('keyup', handleKeyUp)
+
+    return () => {
+      removeEventListener('keyup', handleKeyUp)
+    }
+  }, [])
 
   const handleSetStoredValue = () => {
     setStoredNumber(number)
@@ -25,7 +39,8 @@ const CalculatorProvider = ({ children }) => {
 
   const handleSetDisplayValue = (num) => {
     if ((!number.includes('.') || num !== '.') && number.length < MAX_DIGITS) {
-      setNumber(`${(number + num).replace(/^0+/, '')}`)
+      // setNumber(`${(number + num).replace(/^0+/, '')}`)
+      setNumber((prev) => `${(prev + num).replace(/^0+/, '')}`)
     } else if (number.includes('.') || num === '.') {
       setNumber('')
       handleSetInfoMessage('Результат не определен')
