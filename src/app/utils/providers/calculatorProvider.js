@@ -16,11 +16,7 @@ const CalculatorProvider = ({ children }) => {
   }
 
   const handleSetInfoMessage = (msg) => {
-    if (!msg) {
-      setInfoMessage('')
-    } else {
-      setInfoMessage(msg)
-    }
+    !msg ? setInfoMessage('') : setInfoMessage(msg)
   }
 
   const handleSetDisplayValue = (num) => {
