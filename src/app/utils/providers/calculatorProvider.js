@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { PropTypes } from 'prop-types'
-import { MAX_DIGITS } from '../constants'
+import { MAX_DIGITS, NUMPAD_NUMBER, NUMPAD_CALC_FUNCTION } from '../constants'
 
 export const CalculatorContext = React.createContext()
 
@@ -10,12 +10,6 @@ const CalculatorProvider = ({ children }) => {
   const [functionType, setFunctionType] = useState('')
   const [infoMessage, setInfoMessage] = useState('')
 
-  function handleKeyUp(event) {
-    const { key } = event
-
-    handleSetDisplayValue(key)
-  }
-
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp)
 
@@ -23,6 +17,18 @@ const CalculatorProvider = ({ children }) => {
       removeEventListener('keyup', handleKeyUp)
     }
   }, [])
+
+  const handleKeyUp = (event) => {
+    const { code, key } = event
+    if (NUMPAD_NUMBER.findIndex((el) => el.code === code) >= 0) {
+      handleSetDisplayValue(key)
+    } else if (NUMPAD_CALC_FUNCTION.findIndex((el) => el.code === code) >= 0) {
+      handleCalcFunction(key)
+    } else {
+      console.log(key)
+      execExpression()
+    }
+  }
 
   const handleSetStoredValue = () => {
     setStoredNumber(number)
@@ -39,8 +45,7 @@ const CalculatorProvider = ({ children }) => {
 
   const handleSetDisplayValue = (num) => {
     if ((!number.includes('.') || num !== '.') && number.length < MAX_DIGITS) {
-      // setNumber(`${(number + num).replace(/^0+/, '')}`)
-      setNumber((prev) => `${(prev + num).replace(/^0+/, '')}`)
+      setNumber((prev) => (prev + num).replace(/^0+/, ''))
     } else if (number.includes('.') || num === '.') {
       setNumber('')
       handleSetInfoMessage('Результат не определен')
@@ -49,11 +54,14 @@ const CalculatorProvider = ({ children }) => {
 
   const handleCalcFunction = (data) => {
     handleSetInfoMessage('')
+    console.log('data', data, 'number', number)
+    console.log('storedNumber', storedNumber)
 
     if (number) {
       setFunctionType(data)
       handleSetStoredValue()
     }
+
     if (storedNumber) {
       setFunctionType(data)
     }
